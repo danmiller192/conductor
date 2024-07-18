@@ -86,7 +86,7 @@ public class PostgresIndexDAO extends PostgresBaseDAO implements IndexDAO {
                         + "VALUES (?, ?, ?, ?, ?, ?, ?::JSONB) ON CONFLICT (workflow_id) \n"
                         + "DO UPDATE SET correlation_id = EXCLUDED.correlation_id, workflow_type = EXCLUDED.workflow_type, "
                         + "start_time = EXCLUDED.start_time, status = EXCLUDED.status, json_data = EXCLUDED.json_data "
-                        + "WHERE EXCLUDED.update_time > workflow_index.update_time";
+                        + "WHERE EXCLUDED.update_time >= workflow_index.update_time";
 
         if (onlyIndexOnStatusChange) {
             INSERT_WORKFLOW_INDEX_SQL += " AND workflow_index.status != EXCLUDED.status";
@@ -141,7 +141,7 @@ public class PostgresIndexDAO extends PostgresBaseDAO implements IndexDAO {
                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?::JSONB) ON CONFLICT (task_id) "
                         + "DO UPDATE SET task_type = EXCLUDED.task_type, task_def_name = EXCLUDED.task_def_name, "
                         + "status = EXCLUDED.status, update_time = EXCLUDED.update_time, json_data = EXCLUDED.json_data "
-                        + "WHERE EXCLUDED.update_time > task_index.update_time";
+                        + "WHERE EXCLUDED.update_time >= task_index.update_time";
 
         if (onlyIndexOnStatusChange) {
             INSERT_TASK_INDEX_SQL += " AND task_index.status != EXCLUDED.status";
