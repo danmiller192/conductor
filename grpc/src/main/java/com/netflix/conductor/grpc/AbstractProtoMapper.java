@@ -1097,6 +1097,9 @@ public abstract class AbstractProtoMapper {
         if (from.getDomain() != null) {
             to.setDomain( from.getDomain() );
         }
+        if (from.getWorkerId() != null) {
+            to.setWorkerId( from.getWorkerId() );
+        }
         return to.build();
     }
 
@@ -1122,6 +1125,7 @@ public abstract class AbstractProtoMapper {
         to.setExternalOutputPayloadStoragePath( from.getExternalOutputPayloadStoragePath() );
         to.setWorkflowPriority( from.getWorkflowPriority() );
         to.setDomain( from.getDomain() );
+        to.setWorkerId( from.getWorkerId() );
         return to;
     }
 

@@ -91,6 +91,9 @@ public class TaskSummary {
     @ProtoField(id = 20)
     private String domain;
 
+    @ProtoField(id = 21)
+    private String workerId;
+
     public TaskSummary() {}
 
     public TaskSummary(Task task) {
@@ -113,6 +116,7 @@ public class TaskSummary {
         this.reasonForIncompletion = task.getReasonForIncompletion();
         this.queueWaitTime = task.getQueueWaitTime();
         this.domain = task.getDomain();
+        this.workerId = task.getWorkerId();
         if (task.getInputData() != null) {
             this.input = SummaryUtil.serializeInputOutput(task.getInputData());
         }
@@ -415,6 +419,20 @@ public class TaskSummary {
         this.domain = domain;
     }
 
+    /**
+     * @return the worker that the task was allocated to
+     */
+    public String getWorkerId() {
+        return workerId;
+    }
+
+    /**
+     * @param workerId the worker that the task was allocated to
+     */
+    public void setWorkerId(String workerId) {
+        this.workerId = workerId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -439,7 +457,8 @@ public class TaskSummary {
                 && Objects.equals(getTaskDefName(), that.getTaskDefName())
                 && getTaskType().equals(that.getTaskType())
                 && getTaskId().equals(that.getTaskId())
-                && Objects.equals(getDomain(), that.getDomain());
+                && Objects.equals(getDomain(), that.getDomain())
+                && Objects.equals(getWorkerId(), that.getWorkerId());
     }
 
     @Override
@@ -460,6 +479,7 @@ public class TaskSummary {
                 getTaskType(),
                 getTaskId(),
                 getWorkflowPriority(),
-                getDomain());
+                getDomain(),
+                getWorkerId());
     }
 }

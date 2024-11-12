@@ -45,7 +45,7 @@ public class ConductorProperties {
     /** The maximum timeout duration to set when a workflow is pushed to the decider queue. */
     @DurationUnit(ChronoUnit.SECONDS)
     private Duration maxPostponeDurationSeconds = Duration.ofSeconds(120);
-    
+
     /** The number of threads to use to do background sweep on active workflows. */
     private int sweeperThreadCount = Runtime.getRuntime().availableProcessors() * 2;
 
