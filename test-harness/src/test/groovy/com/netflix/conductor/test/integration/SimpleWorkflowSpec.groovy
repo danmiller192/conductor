@@ -1001,7 +1001,7 @@ class SimpleWorkflowSpec extends AbstractSpecification {
             status == Workflow.WorkflowStatus.RUNNING
             tasks.size() == 1
             tasks[0].taskType == 'integration_task_1'
-            tasks[0].status == Task.Status.SCHEDULED
+            tasks[0].status == Task.Status.IN_PROGRESS
             tasks[0].callbackAfterSeconds == 0
         }
 
