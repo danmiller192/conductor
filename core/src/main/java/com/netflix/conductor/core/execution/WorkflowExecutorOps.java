@@ -768,15 +768,7 @@ public class WorkflowExecutorOps implements WorkflowExecutor {
             return task;
         }
 
-        // for system tasks, setting to SCHEDULED would mean restarting the task which is
-        // undesirable
-        // for worker tasks, set status to SCHEDULED and push to the queue
-        if (!systemTaskRegistry.isSystemTask(task.getTaskType())
-                && taskResult.getStatus() == TaskResult.Status.IN_PROGRESS) {
-            task.setStatus(SCHEDULED);
-        } else {
-            task.setStatus(TaskModel.Status.valueOf(taskResult.getStatus().name()));
-        }
+        task.setStatus(TaskModel.Status.valueOf(taskResult.getStatus().name()));
         task.setOutputMessage(taskResult.getOutputMessage());
         task.setReasonForIncompletion(taskResult.getReasonForIncompletion());
         task.setWorkerId(taskResult.getWorkerId());
